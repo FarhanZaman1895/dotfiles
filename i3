@@ -1,0 +1,1 @@
+/home/fzaman/.config/i3
