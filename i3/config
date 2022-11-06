@@ -1,0 +1,116 @@
+# i3 Config
+
+# AUTOSTART
+# i3 default startups
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xxs-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Appearance related
+exec_always --no-startup-id nitrogen --restore &
+exec --no-startup-id picom &
+
+# Systrap apps
+exec --no-startup-id nm-applet &
+exec --no-startup-id optimus-manager-qt &
+
+# Pipewire
+exec --no-startup-id /usr/bin/pipewire &
+exec --no-startup-id /usr/bin/pipewire-pulse &
+exec --no-startup-id /usr/bin/pipewire-media-session &
+
+# APPEARANCE
+# Font
+font pango:Hack Nerd Font 11
+
+# 
+
+# KEYBINDS
+# Using i3's built in keybind manager for now
+# Will switch to sxhkd at a later date
+
+# Mod Key
+set $mod Mod4
+
+# Move focus (vim keys)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focus (arrow keys)
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows (vim keys)
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Move windows (arrow keys)
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split Management
+bindsym $mod+z split h
+bindsym $mod+v split v
+
+# Fullscreen Toggle
+bindsym $mod+m fullscreen toggle
+
+# Layout/Modes
+floating_modifier $mod
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+e layout toggle split
+bindsym $mod+space focus mode_toggle
+
+# Focus Parent (whatever that means)
+bindsym $mod+a focus parent
+
+# Applications
+bindsym $mod+Return exec alacritty
+bindsym $mod+q kill
+bindsym $mod+p exec --no-startup-id dmenu_run
+bindsym $mod+u exec playerctl play-pause
+bindsym $mod+b exec firefox
+
+# i3 Exit Mode
+mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+    bindsym l exec i3-msg exit
+    bindsym r exec systemctl reboot
+    bindsym s exec systemctl shutdown
+    bindsym Escape mode "default"
+    bindsym Enter mode "default"
+}
+
+bindsym $mod+Shift+q mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+
+# i3 Restart
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+c reload
+
+# Resize Mode
+mode "resize" {
+    # Resize Floating Window (vim keys)
+    bindsym h resize shrink width 10px or 10ppt
+    bindsym j resize grow height 10px or 10ppt
+    bindsym k resize shrink height 10px or 10ppt
+    bindsym l resize grow width 10px or 10ppt
+
+    # Resize Floating Window (vim keys)
+    bindsym Left resize shrink width 10px or 10ppt
+    bindsym Down resize grow height 10px or 10ppt
+    bindsym Up resize shrink height 10px or 10ppt
+    bindsym Right resize grow width 10px or 10ppt
+
+    # Exit Resize Mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"

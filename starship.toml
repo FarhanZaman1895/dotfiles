@@ -1,1 +1,24 @@
-/home/fzaman/.config/starship.toml
+# Don't add new line
+add_newline = false
+
+# Make prompt single line
+[line_break]
+disabled = true
+
+# Some default symbols are not included in Nerd fonts
+# Or otherwise just don't look good
+[haskell]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[python]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
