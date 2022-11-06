@@ -40,12 +40,67 @@ cmp.setup {
       behaviour = cmp.ConfirmBehavior.Insert,
       select = true
     },
-    -- Move down in menu
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item()
-    -- ['<Tab>'] = cmp.mapping()
+
+    -- Basically Vim's built in autocomplete but with more features I guess
+    ['<C-n>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        cmp.complete()
+      end
+    end, { 'i', 'c' }),
+    ['<C-p>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        cmp.complete()
+      end
+    end, { 'i', 'c' }),
+
+    -- Semi super tab
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end),
+
+    -- Semi super shift tab
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end)
   },
+
+  -- Format of autocomplete menu: icon, name, origin
   formatting = {
-    fields = { "kind", "abbr", "menu" }
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        path = '[Path]'
+      })[entry.source.name]
+      return vim_item
+    end
+  },
+
+  sources = {
+    { name = 'buffer' },
+    { name = 'path' }
+  },
+  
+  confirm_opts = {
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = false
+  },
+
+  experimental = {
+    ghost_text = false,
+    native_menu = false
   }
 }
