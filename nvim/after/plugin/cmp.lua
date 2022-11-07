@@ -49,6 +49,8 @@ cmp.setup {
         cmp.complete()
       end
     end, { 'i', 'c' }),
+
+    -- Unlike vim's built in, doesn't reverse order
     ['<C-p>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()

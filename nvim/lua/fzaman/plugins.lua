@@ -35,6 +35,11 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-buffer' -- Completion from Open Buffers
   use 'hrsh7th/cmp-path' -- Path/Directory Name Completion 
   use 'hrsh7th/cmp-cmdline' -- Completion in Command Mode
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP Completion Support
+
+  -- LSP
+  use 'neovim/nvim-lspconfig' -- LSP Enable
+  use 'williamboman/nvim-lsp-installer' -- LSP Install Plugin
   
   -- Setup Config After Cloning Packer
   if PACKER_BOOTSTRAP then
