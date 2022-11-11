@@ -35,12 +35,6 @@ local kind_icons = {
 
 cmp.setup {
   mapping = {
-    -- Enter to complete
-    ['<CR>'] = cmp.mapping.confirm {
-      behaviour = cmp.ConfirmBehavior.Insert,
-      select = true
-    },
-
     -- Basically Vim's built in autocomplete but with more features I guess
     ['<C-n>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -92,7 +86,14 @@ cmp.setup {
   },
 
   sources = {
-    { name = 'buffer' },
+    {
+      name = 'buffer',
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      }
+    },
     { name = 'path' }
   },
   
