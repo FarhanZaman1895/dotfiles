@@ -1,8 +1,8 @@
 -- Plugin Configuration
--- Local Variable for Convenience
+-- Local variable for convenience
 local fn = vim.fn
 
--- Auto Install Packer (when not installed)
+-- Auto install packer (when not installed)
 local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
@@ -17,29 +17,30 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Protected Call
+-- Protected call
 local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
   return
 end
 
--- Install Plugins
+-- Install plugins
 return packer.startup(function(use)
-  -- Core Plugins
-  use 'wbthomason/packer.nvim' -- Actual Package Manager
+  -- Core plugins
+  use 'wbthomason/packer.nvim' -- Actual package manager
   use 'nvim-lua/popup.nvim' -- Popup API
-  use 'nvim-lua/plenary.nvim' -- Dependency for Many Plugins
+  use 'nvim-lua/plenary.nvim' -- Dependency for many plugins
   
   -- CMP
-  use 'hrsh7th/nvim-cmp' -- Completion Plugin
-  use 'hrsh7th/cmp-buffer' -- Completion from Open Buffers
-  use 'hrsh7th/cmp-path' -- Path/Directory Name Completion 
-  use 'hrsh7th/cmp-cmdline' -- Completion in Command Mode
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP Completion Support
+  use 'hrsh7th/nvim-cmp' -- Completion plugin
+  use 'hrsh7th/cmp-buffer' -- Completion from open buffers
+  use 'hrsh7th/cmp-path' -- Path/Directory name completion 
+  use 'hrsh7th/cmp-cmdline' -- Completion in command mode
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP completion support
 
   -- LSP
-  use 'neovim/nvim-lspconfig' -- LSP Enable
-  use 'williamboman/nvim-lsp-installer' -- LSP Install Plugin
+  use 'neovim/nvim-lspconfig' -- LSP enable
+  use 'williamboman/mason.nvim' -- LSP installer mason
+  use 'williamboman/mason-lspconfig' -- LSP installer support 
   
   -- Setup Config After Cloning Packer
   if PACKER_BOOTSTRAP then

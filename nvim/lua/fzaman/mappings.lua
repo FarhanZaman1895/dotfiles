@@ -25,9 +25,6 @@ keymap('n', '<M-j>', ':resize -2<CR>', opts)
 keymap('n', '<M-k>', ':resize +2<CR>', opts)
 keymap('n', '<M-l>', ':vertical resize -2<CR>', opts)
 
--- Netrw Toggle
-keymap('n', '<leader>e', ':Lex 30<CR>', opts)
-
 -- Buffer Nav
 keymap('n', '<Tab>', ':bnext<CR>', opts)
 keymap('n', '<S-Tab>', ':bprevious<CR>', opts)
@@ -49,4 +46,17 @@ keymap('v', '<', '<gv', opts)
 keymap('x', '>', '>gv', opts)
 keymap('x', '<', '<gv', opts)
 
--- Move Selection
+-- Netrw Mappings
+-- Toggle Netrw
+keymap('n', '<leader>e', ':Lex 20<CR>', opts)
+
+-- Netrw fix Ctrl L thing
+-- Not yet implemented in Lua I think
+vim.cmd([[
+  augroup netrw_mappings
+    autocmd!
+    autocmd filetype netrw nnoremap <buffer> <C-l> <C-w>l
+    autocmd filetype netrw nnoremap <buffer> L :Ntree<CR>
+    autocmd filetype netrw nnoremap <buffer> H :Ntree<Space>..<CR>
+  augroup END
+]])
