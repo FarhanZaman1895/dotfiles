@@ -8,8 +8,9 @@ o.background = 'dark' -- Background dark colors
 o.backup = false -- Doesn't create backup
 o.clipboard = 'unnamedplus' -- Copy-paste outside of Vim
 o.confirm = true -- Ask to write if :q or :e
+o.cursorline = true -- Cursor line looks good with color scheme
 o.expandtab = true -- Expands tabs to spaces
-o.guicursor = ""
+o.guicursor = "" -- Fat cursor because why not
 o.hlsearch = true -- Highlight search results
 o.ignorecase = true -- Case insensitive search result
 o.mouse = 'a' -- Mouse support
@@ -18,8 +19,8 @@ o.path:append { '**' } -- :find recursivly
 o.relativenumber = true -- Relative line numbers
 o.scrolloff = 8 -- 8 lines of scrolling with cursor
 o.shiftwidth = 2 -- 2 space indents
-o.shortmess:append 'c'
--- o.signcolumn = 'yes' -- Sign column something I don't like at the moment
+o.shortmess:append 'c' -- Idk 
+o.signcolumn = 'yes' -- Sign column something works better with color scheme
 o.smartcase = true -- Smart case while searching
 o.smartindent = true -- Smarter indentation
 o.splitbelow = true -- Horizontal split defaults below

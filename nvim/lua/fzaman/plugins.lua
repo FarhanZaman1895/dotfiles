@@ -29,6 +29,9 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Actual package manager
   use 'nvim-lua/popup.nvim' -- Popup API
   use 'nvim-lua/plenary.nvim' -- Dependency for many plugins
+
+  -- Color Scheme
+  use 'folke/tokyonight.nvim' -- 
   
   -- CMP
   use 'hrsh7th/nvim-cmp' -- Completion plugin

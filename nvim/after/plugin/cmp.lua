@@ -6,37 +6,37 @@ end
 
 -- LSP Icons
 local kind_icons = {
-  Text = "",
-  Method = "m",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
+  Text = '',
+  Method = 'm',
+  Function = '',
+  Constructor = '',
+  Field = '',
+  Variable = '',
+  Class = '',
+  Interface = '',
+  Module = '',
+  Property = '',
+  Unit = '',
+  Value = '',
+  Enum = '',
+  Keyword = '',
+  Snippet = '',
+  Color = '',
+  File = '',
+  Reference = '',
+  Folder = '',
+  EnumMember = '',
+  Constant = '',
+  Struct = '',
+  Event = '',
+  Operator = '',
+  TypeParameter = '',
 }
 
 cmp.setup {
   mapping = {
     -- Basically Vim's built in autocomplete but with more features I guess
-    ['<C-n>'] = cmp.mapping(function(fallback)
+    ['<C-n>'] = cmp.mapping(function()
       if cmp.visible() then
         cmp.select_next_item()
       else
@@ -45,7 +45,7 @@ cmp.setup {
     end, { 'i', 'c' }),
 
     -- Unlike vim's built in, doesn't reverse order
-    ['<C-p>'] = cmp.mapping(function(fallback)
+    ['<C-p>'] = cmp.mapping(function()
       if cmp.visible() then
         cmp.select_prev_item()
       else
@@ -74,11 +74,12 @@ cmp.setup {
 
   -- Format of autocomplete menu: icon, name, origin
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
       vim_item.menu = ({
-        buffer = "[Buffer]",
+        nvim_lsp = '[LSP]',
+        buffer = '[Buffer]',
         path = '[Path]'
       })[entry.source.name]
       return vim_item
@@ -86,6 +87,7 @@ cmp.setup {
   },
 
   sources = {
+    { name = 'nvim_lsp' },
     {
       name = 'buffer',
       option = {
