@@ -38,3 +38,6 @@ require 'lspconfig'.sumneko_lua.setup{
     }
   }
 }
+
+-- Setup C# LSP
+require 'lspconfig'.omnisharp.setup{}
