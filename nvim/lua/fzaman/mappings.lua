@@ -29,6 +29,9 @@ keymap('n', '<M-l>', ':vertical resize -2<CR>', opts)
 keymap('n', '<Tab>', ':bnext<CR>', opts)
 keymap('n', '<S-Tab>', ':bprevious<CR>', opts)
 
+-- Clear Search Highlighting
+keymap('n', '<leader>l', ':noh<CR>', opts)
+
 -- Insert Mode Mappings
 
 -- Alternate to Esc

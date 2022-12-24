@@ -12,7 +12,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 [[ $- != *i* ]] && return
 
 # Aliases
-alias ls='ls -lAh --color=auto'
+alias ls='ls -gAh --group-directories-first --color=auto'
 alias vim='nvim'
 alias v='nvim'
 alias rm='rm -i'
@@ -32,3 +32,6 @@ eval "$(starship init bash)"
 
 # Neofetch
 neofetch
+
+# Created by `pipx` on 2022-12-18 06:09:05
+export PATH="$PATH:/home/fzaman/.local/bin"
