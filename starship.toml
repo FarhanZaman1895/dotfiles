@@ -22,4 +22,5 @@ symbol = " "
 [php]
 symbol = " "
 
-
+[nodejs]
+disabled = true
