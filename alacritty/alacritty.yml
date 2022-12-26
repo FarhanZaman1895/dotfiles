@@ -13,7 +13,7 @@ font:
   bold_italic:
     family: Hack Nerd Font
     style: Bold Italic
-  size: 10.0
+  size: 8.0
 
 # Colors
 colors:
@@ -39,3 +39,7 @@ colors:
     magenta: '#a96dbb'
     cyan: '#4cb2a4'
     white: '#c5c8c6'
+
+# Transparency
+window:
+  opacity: 0.8
