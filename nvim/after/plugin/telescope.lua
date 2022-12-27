@@ -11,6 +11,7 @@ local actions = require('telescope.actions')
 -- Telescope Keybinds
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>f', function() builtin.find_files(themes.get_dropdown({ preview = false })) end, opts)
+vim.keymap.set('n', '<leader>lg', function() builtin.live_grep(themes.get_dropdown()) end)
 
 -- Telescope Settings
 telescope.setup {

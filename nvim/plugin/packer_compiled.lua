@@ -104,6 +104,11 @@ _G.packer_plugins = {
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -138,6 +143,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ripgrep = {
+    loaded = true,
+    path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/ripgrep",
+    url = "https://github.com/BurntSushi/ripgrep"
   },
   ["telescope-media-files.nvim"] = {
     loaded = true,

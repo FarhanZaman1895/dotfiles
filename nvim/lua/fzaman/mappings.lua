@@ -32,6 +32,9 @@ keymap('n', '<S-Tab>', ':bprevious<CR>', opts)
 -- Clear Search Highlighting
 keymap('n', '<leader>l', ':noh<CR>', opts)
 
+-- Kill Buffer
+keymap('n', '<leader>bq', ':bw<CR>', opts)
+
 -- Insert Mode Mappings
 
 -- Alternate to Esc
@@ -43,11 +46,13 @@ keymap('n', '<leader>l', ':noh<CR>', opts)
 -- Don't Save Paste Text to Register
 keymap('v', 'p', '"_dP', opts)
 
+-- Move Visual Mode
+keymap('v', 'J', ":m '>+1<CR>gv=gv", opts)
+keymap('v', 'K', ":m '<-2<CR>gv=gv", opts)
+
 -- Stay in Visual Mode While Indenting
 keymap('v', '>', '>gv', opts)
 keymap('v', '<', '<gv', opts)
-keymap('x', '>', '>gv', opts)
-keymap('x', '<', '<gv', opts)
 
 -- Netrw Mappings
 -- Toggle Netrw
@@ -57,9 +62,9 @@ keymap('n', '<leader>e', ':Lex 20<CR>', opts)
 -- Not yet implemented in Lua I think
 vim.cmd([[
   augroup netrw_mappings
-    autocmd!
-    autocmd filetype netrw nnoremap <buffer> <C-l> <C-w>l
-    autocmd filetype netrw nnoremap <buffer> L :Ntree<CR>
-    autocmd filetype netrw nnoremap <buffer> H :Ntree<Space>..<CR>
+  autocmd!
+  autocmd filetype netrw nnoremap <buffer> <C-l> <C-w>l
+  autocmd filetype netrw nnoremap <buffer> L :Ntree<CR>
+  autocmd filetype netrw nnoremap <buffer> H :Ntree<Space>..<CR>
   augroup END
 ]])

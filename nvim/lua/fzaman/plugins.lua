@@ -47,6 +47,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use('nvim-telescope/telescope.nvim') -- Telescope proper
+  use('BurntSushi/ripgrep') -- Grep search Telescope
   use('nvim-telescope/telescope-media-files.nvim') -- Image preview in Telescope
 
   -- Treesitter
@@ -55,6 +56,9 @@ return packer.startup(function(use)
     run = ':TSUpdate'
   }
   use('p00f/nvim-ts-rainbow')
+
+  -- Other/Misc
+  use('windwp/nvim-autopairs')
 
   -- Setup Config After Cloning Packer
   if PACKER_BOOTSTRAP then

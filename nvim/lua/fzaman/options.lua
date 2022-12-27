@@ -12,6 +12,7 @@ o.cursorline = true -- Cursor line looks good with color scheme
 o.expandtab = true -- Expands tabs to spaces
 o.guicursor = "" -- Fat cursor because why not
 o.hlsearch = true -- Highlight search results
+o.incsearch = true
 o.ignorecase = true -- Case insensitive search result
 o.mouse = 'a' -- Mouse support
 o.number = true -- Line numbers
