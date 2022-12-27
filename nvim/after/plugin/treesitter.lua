@@ -18,5 +18,12 @@ configs.setup {
     enable = true,
     extended_mode = true,
     max_file_lines = nil
+  },
+  autopairs = {
+    enable = true
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false
   }
 }

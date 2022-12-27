@@ -56,9 +56,11 @@ return packer.startup(function(use)
     run = ':TSUpdate'
   }
   use('p00f/nvim-ts-rainbow')
+  use('JoosepAlviste/nvim-ts-context-commentstring')
 
   -- Other/Misc
   use('windwp/nvim-autopairs')
+  use('numToStr/Comment.nvim')
 
   -- Setup Config After Cloning Packer
   if PACKER_BOOTSTRAP then

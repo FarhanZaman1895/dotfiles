@@ -87,7 +87,7 @@ lsp.on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>vd', function() vim.lsp.buf.declaration({ reuse_win = true }) end, opts)
 
   -- References
-  vim.keymap.set('n', '<leader>vr', function() vim.lsp.buf.references() end, opts)
+  -- vim.keymap.set('n', '<leader>vr', function() vim.lsp.buf.references() end, opts)
 
   -- Diagnostics
   vim.keymap.set('n', 'gl', function()
