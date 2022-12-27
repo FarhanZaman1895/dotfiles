@@ -54,6 +54,7 @@ return packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use('p00f/nvim-ts-rainbow')
 
   -- Setup Config After Cloning Packer
   if PACKER_BOOTSTRAP then
