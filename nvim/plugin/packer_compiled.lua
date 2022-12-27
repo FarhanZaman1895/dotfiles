@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
   ["mason-lspconfig"] = {
     loaded = true,
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/mason-lspconfig",
@@ -138,6 +143,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
     url = "https://github.com/p00f/nvim-ts-rainbow"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/fzaman/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,

@@ -30,9 +30,6 @@ return packer.startup(function(use)
   use ('nvim-lua/popup.nvim') -- Popup API
   use ('nvim-lua/plenary.nvim') -- Dependency for many plugins
 
-  -- Color Scheme
-  use ('folke/tokyonight.nvim') -- 東京の夜
-
   -- CMP
   use('hrsh7th/nvim-cmp') -- Autocomplete engine
   use('hrsh7th/cmp-buffer') -- Completion from open buffers
@@ -52,15 +49,20 @@ return packer.startup(function(use)
 
   -- Treesitter
   use {
-    'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter', -- Amazing colours
     run = ':TSUpdate'
   }
-  use('p00f/nvim-ts-rainbow')
-  use('JoosepAlviste/nvim-ts-context-commentstring')
+  use('p00f/nvim-ts-rainbow') -- Rainbow brackets etc
+  use('JoosepAlviste/nvim-ts-context-commentstring') -- Context specific comments, in jsx/tsx
 
   -- Other/Misc
-  use('windwp/nvim-autopairs')
-  use('numToStr/Comment.nvim')
+  use('windwp/nvim-autopairs') -- Autopair
+  use('numToStr/Comment.nvim') -- Comments
+  use ('folke/tokyonight.nvim') -- 東京の夜
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- Setup Config After Cloning Packer
   if PACKER_BOOTSTRAP then

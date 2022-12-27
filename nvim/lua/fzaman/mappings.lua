@@ -29,6 +29,7 @@ keymap('n', '<M-l>', ':vertical resize -2<CR>', opts)
 keymap('n', '<Tab>', ':bnext<CR>', opts)
 keymap('n', '<S-Tab>', ':bprevious<CR>', opts)
 
+
 -- Clear Search Highlighting
 keymap('n', '<leader>l', ':noh<CR>', opts)
 
@@ -64,7 +65,7 @@ vim.cmd([[
   augroup netrw_mappings
   autocmd!
   autocmd filetype netrw nnoremap <buffer> <C-l> <C-w>l
-  autocmd filetype netrw nnoremap <buffer> L :Ntree<CR>
-  autocmd filetype netrw nnoremap <buffer> H :Ntree<Space>..<CR>
+  autocmd filetype netrw nmap <buffer> L <CR>
+  autocmd filetype netrw nmap <buffer> H -
   augroup END
 ]])
