@@ -26,25 +26,29 @@ end
 -- Install plugins
 return packer.startup(function(use)
   -- Core plugins
-  use 'wbthomason/packer.nvim' -- Actual package manager
-  use 'nvim-lua/popup.nvim' -- Popup API
-  use 'nvim-lua/plenary.nvim' -- Dependency for many plugins
+  use('wbthomason/packer.nvim') -- Actual package manager
+  use ('nvim-lua/popup.nvim') -- Popup API
+  use ('nvim-lua/plenary.nvim') -- Dependency for many plugins
 
   -- Color Scheme
-  use 'folke/tokyonight.nvim' -- 
-  
+  use ('folke/tokyonight.nvim') -- 東京の夜
+
   -- CMP
-  use 'hrsh7th/nvim-cmp' -- Completion plugin
-  use 'hrsh7th/cmp-buffer' -- Completion from open buffers
-  use 'hrsh7th/cmp-path' -- Path/Directory name completion 
-  use 'hrsh7th/cmp-cmdline' -- Completion in command mode
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP completion support
+  use('hrsh7th/nvim-cmp') -- Autocomplete engine
+  use('hrsh7th/cmp-buffer') -- Completion from open buffers
+  use('hrsh7th/cmp-path') -- Path/Directory name completion 
+  use('hrsh7th/cmp-cmdline') -- Completion in command mode
+  use('hrsh7th/cmp-nvim-lsp') -- LSP completion support
 
   -- LSP
-  use 'neovim/nvim-lspconfig' -- LSP enable
-  use 'williamboman/mason.nvim' -- LSP installer mason
-  use 'williamboman/mason-lspconfig' -- LSP installer support 
-  
+  use('neovim/nvim-lspconfig') -- LSP enable
+  use('williamboman/mason.nvim') -- LSP installer mason
+  use('williamboman/mason-lspconfig') -- LSP installer support 
+
+  -- Telescope
+  use('nvim-telescope/telescope.nvim') -- Telescope proper
+  use('nvim-telescope/telescope-media-files.nvim') -- Image preview in Telescope
+
   -- Setup Config After Cloning Packer
   if PACKER_BOOTSTRAP then
     require('packer').sync()

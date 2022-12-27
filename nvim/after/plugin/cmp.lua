@@ -54,22 +54,22 @@ cmp.setup {
     end, { 'i', 'c' }),
 
     -- Semi super tab
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end),
+    -- ['<Tab>'] = cmp.mapping(function(fallback)
+      -- if cmp.visible() then
+        -- cmp.select_next_item()
+      -- else
+        -- fallback()
+      -- end
+    -- end),
 
     -- Semi super shift tab
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end)
+    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+      -- if cmp.visible() then
+        -- cmp.select_prev_item()
+      -- else
+        -- fallback()
+      -- end
+    -- end)
   },
 
   -- Format of autocomplete menu: icon, name, origin
