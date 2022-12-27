@@ -12,15 +12,15 @@ o.cursorline = true -- Cursor line looks good with color scheme
 o.expandtab = true -- Expands tabs to spaces
 o.guicursor = "" -- Fat cursor because why not
 o.hlsearch = true -- Highlight search results
-o.incsearch = true
+o.incsearch = true -- Highlight search while typing
 o.ignorecase = true -- Case insensitive search result
 o.mouse = 'a' -- Mouse support
 o.number = true -- Line numbers
-o.path:append { '**' } -- :find recursivly
 o.relativenumber = true -- Relative line numbers
 o.scrolloff = 8 -- 8 lines of scrolling with cursor
 o.shiftwidth = 2 -- 2 space indents
 o.shortmess:append 'c' -- Idk 
+o.showmode = false
 o.signcolumn = 'yes' -- Sign column something works better with color scheme
 o.smartcase = true -- Smart case while searching
 o.smartindent = true -- Smarter indentation
