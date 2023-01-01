@@ -57,7 +57,7 @@ keymap('v', '<', '<gv', opts)
 
 -- Netrw Mappings
 -- Toggle Netrw
-keymap('n', '<leader>e', ':Lex 20<CR>', opts)
+keymap('n', '<leader>e', ':Lex<CR>', opts)
 
 -- Netrw keymaps 
 
@@ -69,17 +69,8 @@ vim.api.nvim_create_autocmd('filetype', {
     end
 
     netmap('<C-l>', '<C-w>l')
-    netmap('L', '<CR>')
-    netmap('H', '-')
+    netmap('L', ':Ntree<CR>' )
+    netmap('H', ':Ntree ..<CR>')
 
   end
 })
-
--- vim.cmd([[
-  -- augroup netrw_mappings
-  -- autocmd!
-  -- autocmd filetype netrw nnoremap <buffer> <C-l> <C-w>l
-  -- autocmd filetype netrw nmap <buffer> L <CR>
-  -- autocmd filetype netrw nmap <buffer> H -
-  -- augroup END
--- ]])

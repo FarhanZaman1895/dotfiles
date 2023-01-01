@@ -99,11 +99,6 @@ _G.packer_plugins = {
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
-  ["live-server"] = {
-    loaded = true,
-    path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/live-server",
-    url = "https://github.com/manzeloth/live-server"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -189,6 +184,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/home/fzaman/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   }
 }
 

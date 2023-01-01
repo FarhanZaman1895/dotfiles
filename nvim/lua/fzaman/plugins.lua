@@ -58,12 +58,12 @@ return packer.startup(function(use)
   -- Other/Misc
   use('windwp/nvim-autopairs') -- Autopair
   use('numToStr/Comment.nvim') -- Comments
-  use ('folke/tokyonight.nvim') -- 東京の夜
+  use('folke/tokyonight.nvim') -- 東京の夜
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  use('manzeloth/live-server')
+  use('tpope/vim-fugitive')
 
   -- Setup Config After Cloning Packer
   if PACKER_BOOTSTRAP then
