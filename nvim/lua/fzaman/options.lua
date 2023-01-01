@@ -1,5 +1,5 @@
 -- Options for NeoVim
--- Variable o set to vim.opt
+-- Variable o set to vim.optoptions
 local o = vim.opt
 
 -- Options, alphabetical order
@@ -14,6 +14,7 @@ o.guicursor = "" -- Fat cursor because why not
 o.hlsearch = true -- Highlight search results
 o.incsearch = true -- Highlight search while typing
 o.ignorecase = true -- Case insensitive search result
+o.laststatus = 3
 o.mouse = 'a' -- Mouse support
 o.number = true -- Line numbers
 o.relativenumber = true -- Relative line numbers
@@ -37,3 +38,10 @@ o.wrap = false -- Long lines continue into nothingness
 -- Netrw options
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 0
+
+vim.cmd([[
+  augroup netrw_hidden_buffers
+  au!
+  au filetype netrw setlocal bufhidden=wipe
+  augroup END
+]])

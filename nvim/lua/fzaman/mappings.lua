@@ -59,13 +59,27 @@ keymap('v', '<', '<gv', opts)
 -- Toggle Netrw
 keymap('n', '<leader>e', ':Lex 20<CR>', opts)
 
--- Netrw fix Ctrl L thing
--- Not yet implemented in Lua I think
-vim.cmd([[
-  augroup netrw_mappings
-  autocmd!
-  autocmd filetype netrw nnoremap <buffer> <C-l> <C-w>l
-  autocmd filetype netrw nmap <buffer> L <CR>
-  autocmd filetype netrw nmap <buffer> H -
-  augroup END
-]])
+-- Netrw keymaps 
+
+vim.api.nvim_create_autocmd('filetype', {
+  pattern = 'netrw',
+  callback = function()
+    local netmap = function(lhs, rhs)
+      vim.keymap.set('n', lhs, rhs, { remap = true, buffer = true })
+    end
+
+    netmap('<C-l>', '<C-w>l')
+    netmap('L', '<CR>')
+    netmap('H', '-')
+
+  end
+})
+
+-- vim.cmd([[
+  -- augroup netrw_mappings
+  -- autocmd!
+  -- autocmd filetype netrw nnoremap <buffer> <C-l> <C-w>l
+  -- autocmd filetype netrw nmap <buffer> L <CR>
+  -- autocmd filetype netrw nmap <buffer> H -
+  -- augroup END
+-- ]])

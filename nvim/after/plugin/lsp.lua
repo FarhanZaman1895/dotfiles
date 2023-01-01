@@ -90,7 +90,7 @@ lsp.on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<leader>vr', function() vim.lsp.buf.references() end, opts)
 
   -- Diagnostics
-  vim.keymap.set('n', 'gl', function()
+  vim.keymap.set('n', '<leader>vl', function()
     local config = float_settings
     config.scope = 'line'
     vim.diagnostic.open_float(0, config)
@@ -104,7 +104,7 @@ if not lspconfig_status_ok then
 end
 
 -- Setup Lua LSP
-lspconfig.sumneko_lua.setup{
+lspconfig.sumneko_lua.setup {
   settings = {
     Lua = {
       diagnostics = {
@@ -115,6 +115,11 @@ lspconfig.sumneko_lua.setup{
 }
 
 -- Setup C# LSP
-lspconfig.omnisharp.setup{
+lspconfig.omnisharp.setup {
+  on_attach = lsp.on_attach
+}
+
+-- Setup JS/TS 
+lspconfig.tsserver.setup {
   on_attach = lsp.on_attach
 }
