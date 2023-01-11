@@ -10,7 +10,6 @@ o.clipboard = 'unnamedplus' -- Copy-paste outside of Vim
 o.confirm = true -- Ask to write if :q or :e
 o.cursorline = true -- Cursor line looks good with color scheme
 o.expandtab = true -- Expands tabs to spaces
-o.guicursor = "" -- Fat cursor because why not
 o.hlsearch = true -- Highlight search results
 o.incsearch = true -- Highlight search while typing
 o.ignorecase = true -- Case insensitive search result
