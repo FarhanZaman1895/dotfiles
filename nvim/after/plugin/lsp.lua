@@ -121,5 +121,6 @@ lspconfig.omnisharp.setup {
 
 -- Setup JS/TS 
 lspconfig.tsserver.setup {
-  on_attach = lsp.on_attach
+  on_attach = lsp.on_attach,
+  root_dir = function() return vim.loop.cwd() end
 }
