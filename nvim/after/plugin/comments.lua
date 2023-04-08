@@ -13,4 +13,3 @@ local api = require('Comment.api')
 local opts = { silent = true }
 vim.keymap.set('n', '<leader>c', function() api.toggle.linewise() end, opts)
 vim.keymap.set('v', '<leader>c', function() api.toggle.blockwise() end, opts)
-vim.keymap.set('x', '<leader>c', function() api.toggle.blockwise() end, opts)
