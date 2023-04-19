@@ -1,111 +1,71 @@
--- Protected Call CMP
-local cmp_status_ok, cmp = pcall(require, 'cmp')
-if not cmp_status_ok then
+-- Autocompletion and Snippets
+
+-- Protected Calls
+local status, cmp = pcall(require, "cmp")
+if not status then
   return
 end
 
--- LSP Icons
-local kind_icons = {
-  Text = ' ',
-  Method = 'm ',
-  Function = ' ',
-  Constructor = ' ',
-  Field = ' ',
-  Variable = ' ',
-  Class = ' ',
-  Interface = ' ',
-  Module = ' ',
-  Property = ' ',
-  Unit = ' ',
-  Value = ' ',
-  Enum = ' ',
-  Keyword = ' ',
-  Snippet = ' ',
-  Color = ' ',
-  File = ' ',
-  Reference = ' ',
-  Folder = ' ',
-  EnumMember = ' ',
-  Constant = ' ',
-  Struct = ' ',
-  Event = ' ',
-  Operator = ' ',
-  TypeParameter = ' ',
-}
+local luasnip_status, luasnip = pcall(require, "luasnip")
+if not luasnip_status then
+  return
+end
 
-cmp.setup {
-  mapping = {
-    -- Basically Vim's built in autocomplete but with more features I guess
-    ['<C-n>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        cmp.complete()
-      end
-    end, { 'i', 'c' }),
+-- Load Snippets
+require("luasnip/loaders/from_vscode").lazy_load()
 
-    -- Unlike vim's built in, doesn't reverse order
-    ['<C-p>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        cmp.complete()
-      end
-    end, { 'i', 'c' }),
-
-    -- Semi super tab
-    -- ['<Tab>'] = cmp.mapping(function(fallback)
-      -- if cmp.visible() then
-        -- cmp.select_next_item()
-      -- else
-        -- fallback()
-      -- end
-    -- end),
-
-    -- Semi super shift tab
-    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-      -- if cmp.visible() then
-        -- cmp.select_prev_item()
-      -- else
-        -- fallback()
-      -- end
-    -- end)
-  },
-
-  -- Format of autocomplete menu: icon, name, origin
-  formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
-    format = function(entry, vim_item)
-      vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
-      vim_item.menu = ({
-        nvim_lsp = '[LSP]',
-        buffer = '[Buffer]',
-        path = '[Path]'
-      })[entry.source.name]
-      return vim_item
+-- CMP Config
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
     end
   },
 
+  -- Mappings for CMP
+  mapping = {
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" })
+  },
+
+  -- CMP Sources
   sources = {
-    { name = 'nvim_lsp' },
-    {
-      name = 'buffer',
-      option = {
-        get_bufnrs = function()
-          return vim.api.nvim_list_bufs()
-        end
-      }
-    },
-    { name = 'path' }
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" }
   },
 
-  confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false
+  -- Border for Docs
+  window = {
+    documentation = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    }
   },
 
-  experimental = {
-    ghost_text = false,
-    native_menu = false
+  -- Lspkind
+  formatting = {
+    format = require("lspkind").cmp_format({
+      maxwidth = 50
+    })
   }
-}
+})

@@ -1,72 +1,86 @@
--- Plugin Configuration
--- Local variable for convenience
-local fn = vim.fn
+-- Packer Setup
 
--- Auto install packer (when not installed)
-local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path,
-  }
-  print 'Installing packer close and reopen Nvim ... '
-  vim.cmd [[packadd packer.nvim]]
+-- Autoinstall Packer
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
+local packer_bootstrap = ensure_packer()
 
--- Protected call
-local status_ok, packer = pcall(require, 'packer')
-if not status_ok then
+-- Auto update Packer when file write
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
+
+-- Packer Protected Call
+local status, packer = pcall(require, "packer")
+if not status then
   return
 end
 
--- Install plugins
+-- Packer Setup
 return packer.startup(function(use)
-  -- Core plugins
-  use('wbthomason/packer.nvim') -- Actual package manager
-  use ('nvim-lua/popup.nvim') -- Popup API
-  use ('nvim-lua/plenary.nvim') -- Dependency for many plugins
+  -- Base Plugins
+  use("wbthomason/packer.nvim")
+  use("nvim-lua/popup.nvim")
+  use("nvim-lua/plenary.nvim")
 
-  -- CMP
-  use('hrsh7th/nvim-cmp') -- Autocomplete engine
-  use('hrsh7th/cmp-buffer') -- Completion from open buffers
-  use('hrsh7th/cmp-path') -- Path/Directory name completion 
-  use('hrsh7th/cmp-cmdline') -- Completion in command mode
-  use('hrsh7th/cmp-nvim-lsp') -- LSP completion support
-
-  -- LSP
-  use('neovim/nvim-lspconfig') -- LSP enable
-  use('williamboman/mason.nvim') -- LSP installer mason
-  use('williamboman/mason-lspconfig') -- LSP installer support 
+  -- Neovim Tree
+  use("nvim-tree/nvim-tree.lua")
+  use("kyazdani42/nvim-web-devicons")
 
   -- Telescope
-  use('nvim-telescope/telescope.nvim') -- Telescope proper
-  use('BurntSushi/ripgrep') -- Grep search Telescope
-  use('nvim-telescope/telescope-media-files.nvim') -- Image preview in Telescope
+  use({ "nvim-telescope/telescope.nvim", tag = "0.1.1" })
+  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+
+  -- CMP
+  use("hrsh7th/nvim-cmp")
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-path")
+  use("saadparwaiz1/cmp_luasnip")
+  use("hrsh7th/cmp-nvim-lsp")
+
+  -- LuaSnip
+  use("L3MON4D3/LuaSnip")
+  use("rafamadriz/friendly-snippets")
+
+  -- Mason
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
+
+  -- Nvim LSP Config
+  use("neovim/nvim-lspconfig")
+  use("onsails/lspkind.nvim")
 
   -- Treesitter
-  use {
-    'nvim-treesitter/nvim-treesitter', -- Amazing colours
-    run = ':TSUpdate'
-  }
-  use('p00f/nvim-ts-rainbow') -- Rainbow brackets etc
-  use('JoosepAlviste/nvim-ts-context-commentstring') -- Context specific comments, in jsx/tsx
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+      ts_update()
+    end
+  })
 
-  -- Other/Misc
-  use('windwp/nvim-autopairs') -- Autopair
-  use('numToStr/Comment.nvim') -- Comments
-  use('folke/tokyonight.nvim') -- 東京の夜
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use('tpope/vim-fugitive')
+  -- Other
+  use("folke/tokyonight.nvim")
+  use("numToStr/Comment.nvim")
+  use({
+    "kylechui/nvim-surround",
+    tag = "*",
+  })
+  use("nvim-lualine/lualine.nvim")
+  use("windwp/nvim-autopairs")
 
-  -- Setup Config After Cloning Packer
-  if PACKER_BOOTSTRAP then
-    require('packer').sync()
+  if packer_bootstrap then
+    require("packer").sync()
   end
 end)

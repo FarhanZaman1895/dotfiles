@@ -1,42 +1,39 @@
--- Telescope Protected Call
-local telescope_status_op, telescope = pcall(require, 'telescope')
-if not telescope_status_op then
+-- Fuzzy Finder
+
+-- Protected Calls
+local status, telescope = pcall(require, "telescope")
+if not status then
   return
 end
 
-local builtin = require('telescope.builtin')
-local themes = require('telescope.themes')
-local actions = require('telescope.actions')
-
--- Telescope Keybinds
+-- Variables
+local builtin = require("telescope.builtin")
+local actions = require("telescope.actions")
+local themes = require("telescope.themes")
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>f', function() builtin.find_files(themes.get_dropdown({ preview = false })) end, opts)
-vim.keymap.set('n', '<leader>tg', function() builtin.live_grep(themes.get_dropdown()) end)
-vim.keymap.set('n', '<leader>vr', function() builtin.lsp_references() end, opts)
 
--- Telescope Settings
-telescope.setup {
+-- Telescope Opening Keybinds
+vim.keymap.set("n", "<leader>f", function() builtin.find_files(themes.get_dropdown({ preview = false })) end, opts)
+vim.keymap.set("n", "<leader>tg", function() builtin.git_files(themes.get_dropdown({ preview = false })) end, opts)
+vim.keymap.set("n", "<leader>ts", function() builtin.live_grep(themes.get_dropdown()) end, opts)
+vim.keymap.set("n", "<leader>tb", function() builtin.buffers(themes.get_dropdown()) end, opts)
+
+-- Setup
+telescope.setup({
   defaults = {
-    path_display = { 'smart' },
-
-    -- Mappings
     mappings = {
       i = {
-        ['<C-n>'] = actions.cycle_history_next,
-        ['<C-p>'] = actions.cycle_history_prev,
-        ['<C-j>'] = actions.move_selection_next,
-        ['<C-k>'] = actions.move_selection_previous,
-        ['<C-c>'] = actions.close
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
       },
       n = {
-        ['<C-c>'] = actions.close
+        ["<C-c>"] = actions.close
       }
-    },
-  },
-  extensions = {
-    media_files = {
-      filetypes = {'png', 'webp', 'jpg', 'jpeg'},
-      find_cmd = 'rg'
     }
   }
-}
+})
+
+-- Extensions
+telescope.load_extension("fzf")

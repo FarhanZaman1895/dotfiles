@@ -1,29 +1,21 @@
-local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
-if not status_ok then
+-- Treesitter
+-- Primarily used for syntax highlighting and indentation
+
+-- Protected Call
+local status, treesitter = pcall(require, "nvim-treesitter.configs")
+if not status then
   return
 end
 
-configs.setup {
-  ensure_installed = { 'lua', 'help', 'c', 'c_sharp', 'cpp', 'python' },
-  sync_install = false,
-  auto_install = true,
+-- Treesitter Configuration
+treesitter.setup({
   highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false
-  },
-  indent = { enable = true, disable = { 'yaml' } },
-
-  -- Rainbow Parenthesis and Brackets
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil
-  },
-  autopairs = {
     enable = true
   },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false
-  }
-}
+  indent = { enable = true },
+  ensure_installed = {
+    "lua",
+    "bash"
+  },
+  auto_install = true
+})
