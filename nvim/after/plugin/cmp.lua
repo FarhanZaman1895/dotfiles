@@ -14,6 +14,36 @@ end
 -- Load Snippets
 require("luasnip/loaders/from_vscode").lazy_load()
 
+-- Kind Icons Custom
+-- LSPKind was having issues
+local kind_icons = {
+  Text = "󰊄 ",
+  Method = " ",
+  Function = "󰊕 ",
+  Constructor = " ",
+  Field = " ",
+  Variable = "󰫧 ",
+  Class = " ",
+  Interface = " ",
+  Module = "󱒌 ",
+  Property = " ",
+  Unit = " ",
+  Value = " ",
+  Enum = " ",
+  Keyword = " ",
+  Snippet = " ",
+  Color = " ",
+  File = " ",
+  Reference = " ",
+  Folder = " ",
+  EnumMember = " ",
+  Constant = " ",
+  Struct = " ",
+  Event = " ",
+  Operator = " ",
+  TypeParameter = ""
+}
+
 -- CMP Config
 cmp.setup({
   snippet = {
@@ -64,8 +94,11 @@ cmp.setup({
 
   -- Lspkind
   formatting = {
-    format = require("lspkind").cmp_format({
-      maxwidth = 50
-    })
+    fields = { "abbr", "kind" },
+    format = function(entry, vim_item)
+      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      return vim_item
+    end
   }
 })
+
