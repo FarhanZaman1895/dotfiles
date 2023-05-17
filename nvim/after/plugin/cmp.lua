@@ -54,7 +54,13 @@ cmp.setup({
 
   -- Mappings for CMP
   mapping = {
-    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-n>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        cmp.complete()
+      end
+    end),
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),

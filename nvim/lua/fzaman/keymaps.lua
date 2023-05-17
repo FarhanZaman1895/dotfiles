@@ -43,6 +43,13 @@ keymap("n", "<leader>rl", ":vertical resize +2<CR>", opts)
 
 -- Insert Mode Keymaps
 
+-- Disable Vim's built in autocompletion
+keymap("i", "<C-n>", "<nop>", opts)
+keymap("i", "<C-p>", "<nop>", opts)
+
+-- I'm a clown
+keymap("i", "<C-c>", "<Esc>", opts)
+
 -- Visual Mode Keymaps
 
 -- Stay in Visual Mode while indenting
