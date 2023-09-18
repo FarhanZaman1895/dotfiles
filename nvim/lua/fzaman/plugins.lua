@@ -36,7 +36,7 @@ return packer.startup(function(use)
 
   -- Neovim Tree
   use("nvim-tree/nvim-tree.lua")
-  use("kyazdani42/nvim-web-devicons")
+  use("nvim-tree/nvim-web-devicons")
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", tag = "0.1.1" })
