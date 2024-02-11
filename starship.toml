@@ -24,3 +24,6 @@ symbol = " "
 
 [nodejs]
 disabled = true
+
+[c]
+detect_extensions = ['c', 'h', 'cpp', 'hpp']
