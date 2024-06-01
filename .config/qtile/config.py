@@ -63,6 +63,27 @@ for i in groups:
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True), desc="Switch to & move focused window to group {}".format(i.name))
         ])
 
+# groups = [
+#     Group(name = "01", screen_affinity = 0, label = "1"),
+#     Group(name = "02", screen_affinity = 0, label = "2"),
+#     Group(name = "03", screen_affinity = 0, label = "3"),
+#     Group(name = "04", screen_affinity = 0, label = "4"),
+#     Group(name = "05", screen_affinity = 0, label = "5"),
+#     Group(name = "06", screen_affinity = 0, label = "6"),
+#     Group(name = "07", screen_affinity = 0, label = "7"),
+#     Group(name = "08", screen_affinity = 0, label = "8"),
+#     Group(name = "09", screen_affinity = 0, label = "9"),
+#     Group(name = "11", screen_affinity = 1, label = "1"),
+#     Group(name = "12", screen_affinity = 1, label = "2"),
+#     Group(name = "13", screen_affinity = 1, label = "3"),
+#     Group(name = "14", screen_affinity = 1, label = "4"),
+#     Group(name = "15", screen_affinity = 1, label = "5"),
+#     Group(name = "16", screen_affinity = 1, label = "6"),
+#     Group(name = "17", screen_affinity = 1, label = "7"),
+#     Group(name = "18", screen_affinity = 1, label = "8"),
+#     Group(name = "19", screen_affinity = 1, label = "9"),
+# ]
+
 # Colourscheme, based on tokyonight.nvim moon
 colours = [
     "#c8d3f5",      # foreground/text   [0]
