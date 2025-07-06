@@ -1,13 +1,17 @@
 #!/bin/bash
 
-# Most stuff
+# Visuals
 picom &
-nm-applet &
-/home/fzaman/.screenlayout/default.sh
 nitrogen --restore &
-setxkbmap -option ctrl:nocaps
+xrandr --output eDP --set "TearFree" on
+brightnessctl s 30%
 
 # Pipewire
 /bin/pipewire &
 /usr/bin/pipewire-pulse &
 wireplumber &
+
+# Most stuff
+nm-applet &
+flameshot &
+setxkbmap -option ctrl:nocaps

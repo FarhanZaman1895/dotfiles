@@ -35,6 +35,7 @@ keys = [
     Key([mod], "q", lazy.window.kill(), desc="Close current window"),
     Key([mod], "p", lazy.spawn("dmenu_run -h 24"), desc="Launch dmenu, run prompt"),
     Key([mod], "u", lazy.spawn("playerctl play-pause"), desc="Media play-pause"),
+    Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle current window as floating"),
     KeyChord([mod], "s", [
         Key([mod], "f", lazy.spawn("flameshot full -p ~/Pictures/Screenshots/"), desc="Takes screenshot of all screens"),
         Key([mod], "c", lazy.spawn("flameshot gui"), desc="Launches gui screenshot"),
@@ -63,27 +64,6 @@ for i in groups:
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True), desc="Switch to & move focused window to group {}".format(i.name))
         ])
 
-# groups = [
-#     Group(name = "01", screen_affinity = 0, label = "1"),
-#     Group(name = "02", screen_affinity = 0, label = "2"),
-#     Group(name = "03", screen_affinity = 0, label = "3"),
-#     Group(name = "04", screen_affinity = 0, label = "4"),
-#     Group(name = "05", screen_affinity = 0, label = "5"),
-#     Group(name = "06", screen_affinity = 0, label = "6"),
-#     Group(name = "07", screen_affinity = 0, label = "7"),
-#     Group(name = "08", screen_affinity = 0, label = "8"),
-#     Group(name = "09", screen_affinity = 0, label = "9"),
-#     Group(name = "11", screen_affinity = 1, label = "1"),
-#     Group(name = "12", screen_affinity = 1, label = "2"),
-#     Group(name = "13", screen_affinity = 1, label = "3"),
-#     Group(name = "14", screen_affinity = 1, label = "4"),
-#     Group(name = "15", screen_affinity = 1, label = "5"),
-#     Group(name = "16", screen_affinity = 1, label = "6"),
-#     Group(name = "17", screen_affinity = 1, label = "7"),
-#     Group(name = "18", screen_affinity = 1, label = "8"),
-#     Group(name = "19", screen_affinity = 1, label = "9"),
-# ]
-
 # Colourscheme, based on tokyonight.nvim moon
 colours = [
     "#c8d3f5",      # foreground/text   [0]
@@ -100,13 +80,13 @@ colours = [
 
 # Layouts
 layouts = [
-    layout.MonadTall( #type: ignore
+    layout.MonadTall(
         margin = 8,
         border_normal = colours[9],
         border_focus = colours[5]
     ),
-    layout.Max(), #type: ignore
-    layout.Floating() #type: ignore
+    layout.Max(),
+    layout.Floating()
 ]
 
 # Widget Default Settings
@@ -134,7 +114,6 @@ screens = [
                 ),
                 widget.WindowName(),
                 widget.Systray(),
-                widget.Volume(fmt = "Vol: {}"),
                 widget.Battery(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p")
             ], size=24
@@ -155,10 +134,10 @@ dgroups_app_rules = [] # type: list
 follow_mouse_focus = False
 bring_front_click = False
 cursor_wrap = False
-floating_layout = layout.Floating(                  #type: ignore
+floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,       #type: ignore
+        *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
